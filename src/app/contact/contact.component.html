@@ -5,6 +5,7 @@
     <div class="mb-2 text-xs">Fullname</div>
     <div class="mb-4">
       <input
+        [(ngModel)]="fullname"
         class="p-2 text-xs w-full border border-gray-300 rounded-sm active:border-gray-300"
         type="text"
         name=""
@@ -15,6 +16,7 @@
     <div class="mb-2 text-xs">Email</div>
     <div class="mb-4">
       <input
+        [(ngModel)]="email"
         class="text-xs p-2 w-full border border-gray-300 rounded-sm active:border-gray-300"
         type="text"
         name=""
@@ -25,6 +27,7 @@
     <div class="mb-2 text-xs">Message</div>
     <div class="mb-6">
       <textarea
+        [(ngModel)]="body"
         class="p-2 text-xs w-full border border-gray-300 rounded-sm active:border-gray-300"
         name=""
         id=""
@@ -33,6 +36,7 @@
       ></textarea>
     </div>
     <button
+      (click)="this.sendEmail()"
       class="mb-4 w-20 flex justify-center items-center mr-4 shadow-md rounded-sm border border-blue-500 bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-white text-xs pt-2 pb-2 pr-3 pl-3"
     >
       Send

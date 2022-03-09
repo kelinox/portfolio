@@ -9,6 +9,8 @@ import { WorksComponent } from './works/works.component';
 import { ImgChipComponent } from './core/img-chip/img-chip.component';
 import { ContactComponent } from './contact/contact.component';
 import { NavbarService } from './services/navbar.service';
+import { FormsModule } from '@angular/forms';
+import { EmailService } from './services/email.service';
 
 @NgModule({
   declarations: [
@@ -19,8 +21,8 @@ import { NavbarService } from './services/navbar.service';
     ImgChipComponent,
     ContactComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule],
-  providers: [NavbarService],
+  imports: [BrowserModule, AppRoutingModule, FormsModule],
+  providers: [NavbarService, EmailService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
