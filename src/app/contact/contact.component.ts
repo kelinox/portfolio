@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EmailService } from '../services/email.service';
-
+import { MDCSnackbar } from '@material/snackbar';
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
@@ -10,24 +10,38 @@ export class ContactComponent implements OnInit {
   email: string = '';
   fullname: string = '';
   body: string = '';
+  snackbar!: MDCSnackbar;
+  sending = false;
 
   constructor(private readonly emailService: EmailService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.snackbar = new MDCSnackbar(document.querySelector('.mdc-snackbar')!);
+  }
 
   sendEmail() {
-    console.log(this.email);
-    console.log(this.fullname);
-    console.log(this.body);
     if (
       this.email.length > 0 &&
       this.fullname.length > 0 &&
       this.body.length > 0
     ) {
+      this.sending = true;
       this.emailService
         .sendEmail(this.email, this.fullname, this.body)
         .then((r) => {
-          console.log(r);
+          if (r.status === 500) {
+            this.emailService
+              .sendEmail(this.email, this.fullname, this.body)
+              .then((r2) => {
+                if (r2.status === 200) {
+                  this.snackbar.open();
+                  this.sending = false;
+                }
+              });
+          } else if (r.status === 200) {
+            this.snackbar.open();
+            this.sending = false;
+          }
         });
     }
   }

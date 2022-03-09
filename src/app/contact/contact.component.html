@@ -36,6 +36,7 @@
       ></textarea>
     </div>
     <button
+      [disabled]="sending"
       (click)="this.sendEmail()"
       class="mb-4 w-20 flex justify-center items-center mr-4 shadow-md rounded-sm border border-blue-500 bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-white text-xs pt-2 pb-2 pr-3 pl-3"
     >
@@ -47,3 +48,16 @@
     </div>
   </div>
 </div>
+<aside class="mdc-snackbar mdc-snackbar--leading">
+  <div class="mdc-snackbar__surface" role="status" aria-relevant="additions">
+    <div class="mdc-snackbar__label" aria-atomic="false">
+      Email successfully sent
+    </div>
+    <div class="mdc-snackbar__actions" aria-atomic="true">
+      <button type="button" class="mdc-button mdc-snackbar__action">
+        <div class="mdc-button__ripple"></div>
+        <span class="mdc-button__label">Close</span>
+      </button>
+    </div>
+  </div>
+</aside>
